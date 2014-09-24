@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.st.bluenrg"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="19" />
+    <!--
+     Declare this required feature if you want to make the app available to BLE-capable
+    devices only.  If you want to make your app available to devices that don't support BLE,
+    you should omit this in the manifest.  Instead, determine BLE capability by using
+    PackageManager.hasSystemFeature(FEATURE_BLUETOOTH_LE)
+    -->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" android:name="BlueNRGApp">
+        <activity
+            android:name="com.st.bluenrg.SplashScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.st.bluenrg.BluetoothLeService"
+            android:enabled="true" />
+
+        <activity
+            android:name="com.st.bluenrg.DeviceScanActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.st.bluenrg.AboutActivity"
+            android:label="@string/title_activity_about" 
+            android:parentActivityName="com.st.bluenrg.DeviceScanActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.st.bluenrg.DeviceScanActivity" />
+        </activity>
+        <activity
+            android:name="com.st.bluenrg.DetailsActivity"
+            android:label="@string/title_activity_details" 
+            android:parentActivityName="com.st.bluenrg.DeviceScanActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.st.bluenrg.DeviceScanActivity" />
+        </activity>
+        <activity
+            android:name="com.st.bluenrg.LogActivity"
+            android:label="@string/title_activity_log"
+            android:parentActivityName="com.st.bluenrg.DetailsActivity"
+            android:screenOrientation="portrait"  >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.st.bluenrg.DetailsActivity" />
+        </activity>
+    </application>
+
+</manifest>
